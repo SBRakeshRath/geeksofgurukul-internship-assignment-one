@@ -1,0 +1,15 @@
+.header {
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  h1 {
+    color: transparent;
+    background-image: linear-gradient(to right, #37ed81, #3da5bd, #905bec);
+    background-clip: text;
+    margin-bottom: 40px;
+  }
+  p {
+    font-weight: 500;
+    font-size: 18px;
+  }
+}

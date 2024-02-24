@@ -1,0 +1,44 @@
+.scrollWrapper {
+  padding: 20px;
+  position: relative;
+  .scroll {
+    display: flex;
+    gap: 20px;
+    overflow: hidden;
+
+    .initialChild,
+    .secondaryChild {
+      display: flex;
+      gap: 20px;
+      flex-shrink: 0;
+      animation: scroll 50s linear infinite;
+    }
+    .initialChild {
+      &:hover {
+        animation-play-state: paused;
+      }
+
+      &:hover + .secondaryChild {
+        animation-play-state: paused;
+      }
+    }
+
+    .secondaryChild {
+      &:hover {
+        animation-play-state: paused;
+      }
+    }
+    .initialChild:has(+ .secondaryChild:hover) {
+      animation-play-state: paused;
+    }
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(calc(-100% - 20px));
+  }
+}
