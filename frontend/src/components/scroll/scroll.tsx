@@ -1,7 +1,9 @@
+import { useRef } from "react";
 import Card from "../card/card";
 import data from "./../../assets/iitSectionData.json";
 import "./scroll.scss";
 export default function Scroll() {
+  const isClicked = useRef(false);
   return (
     <div className="scrollWrapper">
       <div className="scroll">
@@ -20,6 +22,7 @@ export default function Scroll() {
                 logo2={item.logo2}
                 logo1Alt={item.log1Alt}
                 logo2Alt={item.log2Alt}
+                clickRef={isClicked}
               />
             );
           })}
@@ -39,6 +42,7 @@ export default function Scroll() {
                 logo2={item.logo2}
                 logo1Alt={item.log1Alt}
                 logo2Alt={item.log2Alt}
+                clickRef={isClicked}
               />
             );
           })}

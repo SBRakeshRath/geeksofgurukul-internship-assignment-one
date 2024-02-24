@@ -12,9 +12,11 @@ export default function Card(props: {
   logo2: string;
   logo1Alt: string;
   logo2Alt: string;
+  clickRef: React.MutableRefObject<boolean>;
 }) {
-  const isClicked = useRef(false);
+  const isClicked = props.clickRef;
   const currentCardRef = useRef<HTMLDivElement | null>(null);
+  console.log("root----", isClicked.current);
 
   const clickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
     console.log(window.innerWidth, "width");
@@ -24,17 +26,15 @@ export default function Card(props: {
     const cards = parent?.parentElement?.querySelectorAll(
       ".card"
     ) as NodeListOf<HTMLElement> | null;
+    console.log("-------------------");
+    console.log(isClicked.current, "isClicked");
 
-    // const allCards = ;
-    console.log((parent?.parentElement as HTMLElement | null)?.children);
     cards?.forEach((card) => {
       const elem = card as HTMLElement;
       const commentContainer = elem.querySelector(
         ".commentContainer"
       ) as HTMLElement | null;
       if (commentContainer) {
-        // commentContainer.style.display = "none";
-        // commentContainer.style.animation = "none";
         commentContainer.style.removeProperty("animation");
         commentContainer.style.removeProperty("display");
       }
@@ -60,13 +60,12 @@ export default function Card(props: {
 
     //handel Scroll
 
-    // if (currentCardRef.current !== e.currentTarget) return;
-
     const scrollParent = (e.currentTarget.parentElement as HTMLElement | null)
       ?.parentElement as HTMLElement | null;
 
     scrollParent?.childNodes.forEach((child) => {
       const elem = child as HTMLElement;
+      console.log(elem);
 
       isClicked.current
         ? elem.style.removeProperty("animation-play-state")
@@ -74,10 +73,14 @@ export default function Card(props: {
 
       console.log(isClicked.current, "isClicked");
     });
+    console.log("clicked");
+    console.log(isClicked.current, "isClicked");
 
     isClicked.current
       ? (isClicked.current = false)
       : (isClicked.current = true);
+
+    console.log(isClicked.current, "isClicked");
   };
   return (
     <div className="card" onClick={clickHandler}>
