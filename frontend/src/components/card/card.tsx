@@ -17,16 +17,26 @@ export default function Card(props: {
   const currentCardRef = useRef<HTMLDivElement | null>(null);
 
   const clickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    console.log(window.innerWidth, "width");
+
+    if (window.innerWidth > 768) return;
     const parent = e.currentTarget.parentElement as HTMLElement | null;
-    const cards = parent?.querySelectorAll(".card");
+    const cards = parent?.parentElement?.querySelectorAll(
+      ".card"
+    ) as NodeListOf<HTMLElement> | null;
+
+    // const allCards = ;
+    console.log((parent?.parentElement as HTMLElement | null)?.children);
     cards?.forEach((card) => {
       const elem = card as HTMLElement;
       const commentContainer = elem.querySelector(
         ".commentContainer"
       ) as HTMLElement | null;
       if (commentContainer) {
-        commentContainer.style.display = "none";
-        commentContainer.style.animation = "none";
+        // commentContainer.style.display = "none";
+        // commentContainer.style.animation = "none";
+        commentContainer.style.removeProperty("animation");
+        commentContainer.style.removeProperty("display");
       }
 
       const currentCard = e.currentTarget as HTMLElement;
@@ -54,16 +64,20 @@ export default function Card(props: {
 
     const scrollParent = (e.currentTarget.parentElement as HTMLElement | null)
       ?.parentElement as HTMLElement | null;
-    isClicked.current
-      ? (isClicked.current = false)
-      : (isClicked.current = true);
+
     scrollParent?.childNodes.forEach((child) => {
       const elem = child as HTMLElement;
 
       isClicked.current
-        ? (elem.style.animationPlayState = "paused")
-        : (elem.style.animationPlayState = "running");
+        ? elem.style.removeProperty("animation-play-state")
+        : (elem.style.animationPlayState = "paused");
+
+      console.log(isClicked.current, "isClicked");
     });
+
+    isClicked.current
+      ? (isClicked.current = false)
+      : (isClicked.current = true);
   };
   return (
     <div className="card" onClick={clickHandler}>

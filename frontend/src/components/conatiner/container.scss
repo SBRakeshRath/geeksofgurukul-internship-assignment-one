@@ -1,12 +1,10 @@
-main{
-    background-color: #000000;
-    padding: 0px 10px;
-    
+main {
+  background-color: #000000;
+  padding: 0px 0px;
 }
 
 @media screen and (min-width: 768px) {
-    main{
-        padding: 0px 40px;
-    }
-    
+  main {
+    padding: 0px 40px;
+  }
 }

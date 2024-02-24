@@ -13,24 +13,6 @@
       flex-shrink: 0;
       animation: scroll 50s linear infinite;
     }
-    .initialChild {
-      &:hover {
-        animation-play-state: paused;
-      }
-
-      &:hover + .secondaryChild {
-        animation-play-state: paused;
-      }
-    }
-
-    .secondaryChild {
-      &:hover {
-        animation-play-state: paused;
-      }
-    }
-    .initialChild:has(+ .secondaryChild:hover) {
-      animation-play-state: paused;
-    }
   }
 }
 
@@ -40,5 +22,31 @@
   }
   100% {
     transform: translateX(calc(-100% - 20px));
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .scrollWrapper {
+    padding: 40px;
+    .scroll {
+      .initialChild {
+        &:hover {
+          animation-play-state: paused;
+        }
+
+        &:hover + .secondaryChild {
+          animation-play-state: paused;
+        }
+      }
+
+      .secondaryChild {
+        &:hover {
+          animation-play-state: paused;
+        }
+      }
+      .initialChild:has(+ .secondaryChild:hover) {
+        animation-play-state: paused;
+      }
+    }
   }
 }
